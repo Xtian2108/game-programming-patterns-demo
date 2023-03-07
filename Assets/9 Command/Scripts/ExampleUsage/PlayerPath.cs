@@ -47,7 +47,7 @@ namespace DesignPatterns.Command
             // update points for LineRenderer
             pointList = pathObjects.Select(x => x.transform.position).ToList();
 
-            lineRenderer.positionCount = pointList.Count-1;
+            lineRenderer.positionCount = pointList.Count;
         }
 
         public void RemoveFromPath()
@@ -58,7 +58,7 @@ namespace DesignPatterns.Command
             // update points for LineRenderer
             pointList = pathObjects.Select(x => x.transform.position).ToList();
 
-            lineRenderer.positionCount = pointList.Count-1;
+            lineRenderer.positionCount = pointList.Count;
         }
 
         private void Update()
