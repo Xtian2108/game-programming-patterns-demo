@@ -10,15 +10,16 @@ namespace DesignPatterns.Command
     {
         // one dot to represent the path
         [SerializeField] private GameObject pathPointPrefab;
-        [SerializeField] Transform pathTransform;
+        [SerializeField]         Transform  pathTransform;
 
         // amount to offset each path point
-        [SerializeField] Vector3 offset;
-        private Stack<GameObject> pathObjects = new Stack<GameObject>();
+        [SerializeField] Vector3           offset;
+        private          Stack<GameObject> pathObjects = new Stack<GameObject>();
 
         // LineRenderer to connect the point prefabs
-        [SerializeField] private LineRenderer lineRenderer;
-        [SerializeField] List<Vector3> pointList;
+        [SerializeField] private LineRenderer  lineRenderer;
+        [SerializeField]         List<Vector3> pointList;
+        public                   bool          showLineRenderer;
 
         private void Start()
         {
@@ -33,7 +34,8 @@ namespace DesignPatterns.Command
                 return;
             }
 
-            GameObject newPathObject = Object.Instantiate(pathPointPrefab, position + offset, Quaternion.identity) as GameObject;
+            GameObject newPathObject =
+                Object.Instantiate(pathPointPrefab, position + offset, Quaternion.identity) as GameObject;
 
             pathObjects?.Push(newPathObject);
 
@@ -44,8 +46,8 @@ namespace DesignPatterns.Command
 
             // update points for LineRenderer
             pointList = pathObjects.Select(x => x.transform.position).ToList();
-            lineRenderer.positionCount = pointList.Count;
 
+            lineRenderer.positionCount = pointList.Count-1;
         }
 
         public void RemoveFromPath()
@@ -55,7 +57,8 @@ namespace DesignPatterns.Command
 
             // update points for LineRenderer
             pointList = pathObjects.Select(x => x.transform.position).ToList();
-            lineRenderer.positionCount = pointList.Count;
+
+            lineRenderer.positionCount = pointList.Count-1;
         }
 
         private void Update()

@@ -31,6 +31,7 @@ namespace DesignPatterns.Command
 
         public bool IsValidMove(Vector3 movement)
         {
+            
             return !Physics.Raycast(transform.position, movement, boardSpacing, obstacleLayer);
         }
     }
