@@ -8,7 +8,6 @@ namespace Command.Assignament.Scripts
 
         public static void ExecuteCommand(ICommands commands)
         {
-            commands.Execute();
             undoCommands.Push(commands);
         }
 
@@ -20,6 +19,6 @@ namespace Command.Assignament.Scripts
                 currentCommands.Undo();
             }
         }
-        
+
     }
 }

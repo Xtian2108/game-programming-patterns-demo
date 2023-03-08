@@ -6,16 +6,17 @@ namespace Command.Assignament.Scripts
     {
         public void Execute()
         {
-            var transformPosition = gameObject.transform.position;
-            transformPosition.y           -= 1;
-            gameObject.transform.position =  transformPosition;
+            var position = gameObject.transform.position;
+            position                      = new Vector3(position.x,position.y - 1,position.z);
+            gameObject.transform.position = position;
+            CommandManager.ExecuteCommand(this);
         }
 
         public void Undo()
         {
-            var transformPosition = gameObject.transform.position;
-            transformPosition.y           += 1;
-            gameObject.transform.position =  transformPosition;
+            var position = gameObject.transform.position;
+            position                      = new Vector3(position.x,position.y + 1,position.z);
+            gameObject.transform.position = position;
         }
     }
 }
